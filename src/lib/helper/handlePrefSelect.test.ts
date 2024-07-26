@@ -5,6 +5,7 @@ import {
   OSAKA,
   INITIAL_SELECTED_PREFS_STATE,
 } from '@/tests/jest.constants';
+import { ADD_PREFECTURE, REMOVE_PREFECTURE } from '@/lib/reducer/constants';
 import type { SelectedPrefsState, HandleSelectedPrefsAction } from '@/types';
 
 describe('handlePrefSelect', () => {
@@ -18,7 +19,7 @@ describe('handlePrefSelect', () => {
     const dispatch: React.Dispatch<HandleSelectedPrefsAction> = jest.fn();
     handlePrefSelect(TOKYO, state, dispatch);
     expect(dispatch).toHaveBeenCalledWith({
-      type: 'REMOVE_PREFECTURE',
+      type: REMOVE_PREFECTURE,
       payload: TOKYO,
     });
   });
@@ -31,7 +32,7 @@ describe('handlePrefSelect', () => {
     const dispatch: React.Dispatch<HandleSelectedPrefsAction> = jest.fn();
     handlePrefSelect(OSAKA, state, dispatch);
     expect(dispatch).toHaveBeenCalledWith({
-      type: 'ADD_PREFECTURE',
+      type: ADD_PREFECTURE,
       payload: OSAKA,
     });
   });

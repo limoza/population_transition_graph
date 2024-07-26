@@ -1,5 +1,6 @@
 import { describe, it, expect } from '@jest/globals';
 import { selectedPrefsReducer } from '@/lib/reducer/selectedPrefsReducer';
+import { ADD_PREFECTURE, REMOVE_PREFECTURE } from '@/lib/reducer/constants';
 import {
   TOKYO,
   OSAKA,
@@ -17,7 +18,7 @@ describe('selectedPrefsReducer', () => {
   it('ADD_PREFECTUREアクションがdispatchされたときに新しい都道府県が追加されること', () => {
     const payload: Prefecture = OSAKA;
     const action: HandleSelectedPrefsAction = {
-      type: 'ADD_PREFECTURE',
+      type: ADD_PREFECTURE,
       payload,
     };
     const newState = selectedPrefsReducer(initialState, action);
@@ -28,7 +29,7 @@ describe('selectedPrefsReducer', () => {
   it('REMOVE_PREFECTUREアクションがdispatchされたときに既存の都道府県が削除されること', () => {
     const payload: Prefecture = TOKYO;
     const action: HandleSelectedPrefsAction = {
-      type: 'REMOVE_PREFECTURE',
+      type: REMOVE_PREFECTURE,
       payload,
     };
     const newState = selectedPrefsReducer(initialState, action);

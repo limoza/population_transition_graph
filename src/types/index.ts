@@ -1,3 +1,5 @@
+import { ADD_PREFECTURE, REMOVE_PREFECTURE } from '@/lib/reducer/constants';
+
 export type Prefectures = Prefecture[];
 export type Prefecture = {
   prefCode: number;
@@ -5,8 +7,8 @@ export type Prefecture = {
 };
 
 export type HandleSelectedPrefsAction =
-  | { type: 'ADD_PREFECTURE'; payload: Prefecture }
-  | { type: 'REMOVE_PREFECTURE'; payload: Prefecture };
+  | { type: typeof ADD_PREFECTURE; payload: Prefecture }
+  | { type: typeof REMOVE_PREFECTURE; payload: Prefecture };
 
 export type SelectedPrefsState = {
   selectedPrefs: Prefectures | [];

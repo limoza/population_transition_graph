@@ -1,9 +1,10 @@
+import { isPrefSelected } from '@/lib/helper/isPrefSelected';
+import { ADD_PREFECTURE, REMOVE_PREFECTURE } from '@/lib/reducer/constants';
 import type {
   Prefecture,
   SelectedPrefsState,
   HandleSelectedPrefsAction,
 } from '@/types';
-import { isPrefSelected } from '@/lib/helper/isPrefSelected';
 
 export const handlePrefSelect = (
   prefData: Prefecture,
@@ -11,8 +12,8 @@ export const handlePrefSelect = (
   dispatch: React.Dispatch<HandleSelectedPrefsAction>,
 ) => {
   if (isPrefSelected(prefData, state)) {
-    dispatch({ type: 'REMOVE_PREFECTURE', payload: prefData });
+    dispatch({ type: REMOVE_PREFECTURE, payload: prefData });
   } else {
-    dispatch({ type: 'ADD_PREFECTURE', payload: prefData });
+    dispatch({ type: ADD_PREFECTURE, payload: prefData });
   }
 };
