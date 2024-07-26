@@ -3,7 +3,7 @@ import type {
   SelectedPrefsState,
   HandleSelectedPrefsAction,
 } from '@/types';
-import { isPrefSelected } from './isPrefSelected';
+import { isPrefSelected } from '@/lib/helper/isPrefSelected';
 
 export const handlePrefSelect = (
   prefData: Prefecture,
