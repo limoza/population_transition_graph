@@ -1,9 +1,15 @@
-import { css } from '@linaria/core';
+'use client';
 
-const test = css`
-  color: blue;
-`;
+import React from 'react';
+import { Application } from '@/Components/Application/Application';
+import { SelectedPrefsProvider } from '@/lib/context/SelectedPrefsProvider';
 
 export default function Home() {
-  return <main className={test}>test</main>;
+  return (
+    <main>
+      <SelectedPrefsProvider>
+        <Application />
+      </SelectedPrefsProvider>
+    </main>
+  );
 }
