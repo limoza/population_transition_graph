@@ -1,4 +1,7 @@
 import { useState, useEffect } from 'react';
+import { fetchData } from '@/lib/helper/fetchData';
+
+const URL = 'https://opendata.resas-portal.go.jp/api/v1/prefectures';
 
 export const useGetPrefsData = () => {
   const [data, setData] = useState(null);
@@ -6,20 +9,10 @@ export const useGetPrefsData = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchPrefsData = async () => {
       try {
-        const response = await fetch(
-          'https://opendata.resas-portal.go.jp/api/v1/prefectures',
-          {
-            headers: {
-              'X-API-KEY': `${process.env.NEXT_PUBLIC_REASAS_API_KEY}`,
-            },
-          },
-        );
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        const result = await response.json();
+        const result = await fetchData(URL);
+        console.log('result', result);
         setData(result.result);
       } catch (err) {
         setError(err);
@@ -28,7 +21,7 @@ export const useGetPrefsData = () => {
       }
     };
 
-    fetchData();
+    fetchPrefsData();
   }, []);
 
   return { data, loading, error };
