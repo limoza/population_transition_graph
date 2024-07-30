@@ -1,26 +1,26 @@
 import { useState, useEffect } from 'react';
+import { fetchPopulationData } from '@/lib/helper/fetchPopulationData';
+import type { PopulationData } from '@/types';
 
-export const useGetPopulationData = () => {
-  const [data, setData] = useState(null);
+type Result = {
+  data: PopulationData[] | null;
+  loading: boolean;
+  error: Error | null;
+};
+
+export const useGetPopulationData = (
+  onlyInSelectedPrefsState: number | undefined,
+): Result => {
+  const [data, setData] = useState<PopulationData[] | null>(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
+  const [error, setError] = useState<Error | null>(null);
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(
-          'https://opendata.resas-portal.go.jp/api/v1/population/composition/perYear?cityCode=-&prefCode=',
-          {
-            headers: {
-              'X-API-KEY': `${process.env.NEXT_PUBLIC_REASAS_API_KEY}`,
-            },
-          },
+        const fetchedData = await fetchPopulationData(
+          onlyInSelectedPrefsState as number,
         );
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        const result = await response.json();
-        setData(result.result);
+        setData([fetchedData]);
       } catch (err) {
         setError(err);
       } finally {
@@ -29,7 +29,7 @@ export const useGetPopulationData = () => {
     };
 
     fetchData();
-  }, []);
+  }, [onlyInSelectedPrefsState]);
 
   return { data, loading, error };
 };
