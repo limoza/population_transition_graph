@@ -20,8 +20,7 @@ export const findDifferences = (
     };
   }
 
-  const isPrefUnchecked =
-    populationData.length > 0 && selectedPrefsState.length === 0;
+  const isPrefUnchecked = isSelectedPrefsStateEmpty && !isPopulationDataEmpty;
   if (isPrefUnchecked) {
     return {
       onlyInSelectedPrefsState: undefined,
