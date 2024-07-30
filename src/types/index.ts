@@ -31,8 +31,9 @@ export type PopulationData = {
     data: {
       year: number;
       value: number;
-    };
-  };
+      rate?: number;
+    }[];
+  }[];
 };
 
 export type PopulationCategoryId =
