@@ -34,3 +34,22 @@ export type PopulationData = {
     };
   };
 };
+
+export type PopulationCategoryId =
+  | typeof TOTAL_POPULATION_ID
+  | typeof YOUNG_POPULATION_ID
+  | typeof WORKING_AGE_POPULATION_ID
+  | typeof ELDERLY_POPULATION_ID;
+
+type PopulationCategoryLabel =
+  | typeof TOTAL_POPULATION_LABEL
+  | typeof YOUNG_POPULATION_LABEL
+  | typeof WORKING_AGE_POPULATION_LABEL
+  | typeof ELDERLY_POPULATION_LABEL;
+
+export type PopulationCategory = {
+  id: PopulationCategoryId;
+  label: PopulationCategoryLabel;
+};
+
+export type PopulationCategories = PopulationCategory[];

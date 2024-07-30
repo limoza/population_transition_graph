@@ -2,9 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { useGetPopulationData } from '@/lib/hooks/useGetPopulationData';
 import { useGetSelectedPrefs } from '@/lib/hooks/useGetSelectedPrefs';
 import { findDifferences } from '@/lib/helper/findDifferences';
-import type { PopulationData } from '@/types';
+import type { PopulationCategoryId, PopulationData } from '@/types';
 
-export const PopulationChart = () => {
+type Props = {
+  populationCategory: PopulationCategoryId;
+};
+
+export const PopulationChart = ({ populationCategory }: Props) => {
   const { selectedPrefsState } = useGetSelectedPrefs();
   const [populationData, setPopulationData] = useState<PopulationData[]>([]);
   const { onlyInSelectedPrefsState, onlyInPopulationData } = findDifferences(
