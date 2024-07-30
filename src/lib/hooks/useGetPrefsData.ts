@@ -12,7 +12,6 @@ export const useGetPrefsData = () => {
     const fetchPrefsData = async () => {
       try {
         const result = await fetchData(URL);
-        console.log('result', result);
         setData(result.result);
       } catch (err) {
         setError(err);
