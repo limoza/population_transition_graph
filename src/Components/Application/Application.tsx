@@ -1,21 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { useGetPrefsData } from '@/lib/hooks/useGetPrefsData';
+import React from 'react';
 import { PrefecturesCheckboxList } from '@/Components/PrefecturesCheckboxList/PrefecturesCheckboxList';
-import type { Prefectures } from '@/types';
+import { PopulationChartContainer } from '@/Components/PopulationChartContainer/PopulationChartContainer';
 
 export const Application = () => {
-  const [prefsData, setPrefsData] = useState<Prefectures>([]);
-  const { data, loading, error } = useGetPrefsData();
-
-  useEffect(() => {
-    if (!loading && !error && data) {
-      setPrefsData(data);
-    }
-  }, [data, error, loading]);
-
   return (
     <div>
-      <PrefecturesCheckboxList prefsData={prefsData} />
+      <PrefecturesCheckboxList />
+      <PopulationChartContainer />
     </div>
   );
 };
