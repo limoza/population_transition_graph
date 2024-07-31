@@ -24,16 +24,18 @@ export type SelectedPrefsState = {
   selectedPrefs: Prefectures | [];
 };
 
+export type PrefPopulationData = {
+  label: string;
+  data: {
+    year: number;
+    value: number;
+    rate?: number;
+  }[];
+};
+
 export type PopulationData = {
   prefCode: number;
-  prefPopulationData: {
-    label: string;
-    data: {
-      year: number;
-      value: number;
-      rate?: number;
-    }[];
-  }[];
+  prefPopulationData: PrefPopulationData;
 };
 
 export type PopulationCategoryId =
