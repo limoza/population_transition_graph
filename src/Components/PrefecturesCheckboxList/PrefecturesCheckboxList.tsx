@@ -6,11 +6,14 @@ import type { Prefectures } from '@/types';
 export const PrefecturesCheckboxList = () => {
   const [prefsData, setPrefsData] = useState<Prefectures>([]);
   const { data, loading, error } = useGetPrefsData();
+
   useEffect(() => {
-    if (!loading && !error && data) {
-      setPrefsData(data);
-    }
-  }, [data, error, loading]);
+    if (data) setPrefsData(data);
+  }, [data]);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error.message}</div>;
+
   return (
     <ul>
       {prefsData.map((prefData) => (
