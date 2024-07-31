@@ -43,14 +43,17 @@ export const PREF_POPULATION_DATA = [
 export const POPULATION_DATA = [
   {
     prefCode: 1,
+    prefName: '北海道',
     prefPopulationData: PREF_POPULATION_DATA,
   },
   {
     prefCode: 13,
+    prefName: '東京',
     prefPopulationData: PREF_POPULATION_DATA,
   },
   {
     prefCode: 27,
+    prefName: '大阪',
     prefPopulationData: PREF_POPULATION_DATA,
   },
 ];

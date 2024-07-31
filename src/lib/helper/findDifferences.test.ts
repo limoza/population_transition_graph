@@ -39,8 +39,16 @@ describe('findDifferences', () => {
       { prefCode: 3, prefName: 'Prefecture 3' },
     ];
     const populationData = [
-      { prefCode: 1, prefPopulationData: PREF_POPULATION_DATA },
-      { prefCode: 3, prefPopulationData: PREF_POPULATION_DATA },
+      {
+        prefCode: 1,
+        prefName: '北海道',
+        prefPopulationData: PREF_POPULATION_DATA,
+      },
+      {
+        prefCode: 3,
+        prefName: '岩手県',
+        prefPopulationData: PREF_POPULATION_DATA,
+      },
     ];
     const result = findDifferences(selectedPrefsState, populationData);
     expect(result.onlyInSelectedPrefsState).toBe(2);
@@ -52,9 +60,21 @@ describe('findDifferences', () => {
       { prefCode: 3, prefName: 'Prefecture 3' },
     ];
     const populationData = [
-      { prefCode: 1, prefPopulationData: PREF_POPULATION_DATA },
-      { prefCode: 2, prefPopulationData: PREF_POPULATION_DATA },
-      { prefCode: 3, prefPopulationData: PREF_POPULATION_DATA },
+      {
+        prefCode: 1,
+        prefName: '北海道',
+        prefPopulationData: PREF_POPULATION_DATA,
+      },
+      {
+        prefCode: 2,
+        prefName: '青森県',
+        prefPopulationData: PREF_POPULATION_DATA,
+      },
+      {
+        prefCode: 3,
+        prefName: '岩手県',
+        prefPopulationData: PREF_POPULATION_DATA,
+      },
     ];
     const result = findDifferences(selectedPrefsState, populationData);
     expect(result.onlyInPopulationData).toBe(2);
@@ -67,9 +87,21 @@ describe('findDifferences', () => {
       { prefCode: 3, prefName: 'Prefecture 3' },
     ];
     const populationData = [
-      { prefCode: 1, prefPopulationData: PREF_POPULATION_DATA },
-      { prefCode: 2, prefPopulationData: PREF_POPULATION_DATA },
-      { prefCode: 3, prefPopulationData: PREF_POPULATION_DATA },
+      {
+        prefCode: 1,
+        prefName: '北海道',
+        prefPopulationData: PREF_POPULATION_DATA,
+      },
+      {
+        prefCode: 2,
+        prefName: '青森県',
+        prefPopulationData: PREF_POPULATION_DATA,
+      },
+      {
+        prefCode: 3,
+        prefName: '岩手県',
+        prefPopulationData: PREF_POPULATION_DATA,
+      },
     ];
     const result = findDifferences(selectedPrefsState, populationData);
     expect(result.onlyInSelectedPrefsState).toBeUndefined();
