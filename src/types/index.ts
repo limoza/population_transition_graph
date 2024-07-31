@@ -35,7 +35,7 @@ export type PrefPopulationData = {
 
 export type PopulationData = {
   prefCode: number;
-  prefPopulationData: PrefPopulationData;
+  prefPopulationData: PrefPopulationData[];
 };
 
 export type PopulationCategoryId =
