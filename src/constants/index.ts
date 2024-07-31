@@ -10,6 +10,13 @@ export const YOUNG_POPULATION_LABEL = '年少人口';
 export const WORKING_AGE_POPULATION_LABEL = '生産年齢人口';
 export const ELDERLY_POPULATION_LABEL = '老年人口';
 
+export const POPULATION_CATEGORY_INDEX = {
+  [TOTAL_POPULATION_ID]: 0,
+  [YOUNG_POPULATION_ID]: 1,
+  [WORKING_AGE_POPULATION_ID]: 2,
+  [ELDERLY_POPULATION_ID]: 3,
+};
+
 export const POPULATION_CATEGORY_OPTIONS: PopulationCategories = [
   {
     id: TOTAL_POPULATION_ID,

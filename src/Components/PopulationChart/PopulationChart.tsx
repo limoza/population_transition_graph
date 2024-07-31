@@ -2,15 +2,25 @@ import React, { useState, useEffect } from 'react';
 import { useGetPopulationData } from '@/lib/hooks/useGetPopulationData';
 import { useGetSelectedPrefs } from '@/lib/hooks/useGetSelectedPrefs';
 import { findDifferences } from '@/lib/helper/findDifferences';
-import type { PopulationCategoryId, PopulationData } from '@/types';
+import type {
+  PopulationCategoryId,
+  PopulationData,
+  PrefPopulationData,
+} from '@/types';
 
 type Props = {
-  populationCategory: PopulationCategoryId;
+  populationCategory: {
+    categoryId: PopulationCategoryId;
+    index: number;
+  };
 };
 
 export const PopulationChart = ({ populationCategory }: Props) => {
   const { selectedPrefsState } = useGetSelectedPrefs();
   const [populationData, setPopulationData] = useState<PopulationData[]>([]);
+  const [filteredPopulationData, setFilteredPopulationData] = useState<
+    { [x: number]: PrefPopulationData }[] | null
+  >(null);
   const { onlyInSelectedPrefsState, onlyInPopulationData } = findDifferences(
     selectedPrefsState.selectedPrefs,
     populationData,
@@ -34,6 +44,13 @@ export const PopulationChart = ({ populationCategory }: Props) => {
       setPopulationData((prev) => [...prev, ...data]);
     }
   }, [data]);
+
+  useEffect(() => {
+    const result = populationData.map((data) => ({
+      [data.prefCode]: data.prefPopulationData[populationCategory.index],
+    }));
+    setFilteredPopulationData(result);
+  }, [populationCategory.index, populationData]);
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
