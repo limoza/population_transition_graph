@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { fetchPopulationData } from '@/lib/helper/fetchPopulationData';
+import { fetchData } from '@/lib/helper/fetchData';
 import type { PopulationData } from '@/types';
 
 type Result = {
@@ -14,13 +14,21 @@ export const useGetPopulationData = (
   const [data, setData] = useState<PopulationData[] | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
+
   useEffect(() => {
-    const fetchData = async () => {
+    const URL = `https://opendata.resas-portal.go.jp/api/v1/population/composition/perYear?cityCode=-&prefCode=${onlyInSelectedPrefsState}`;
+
+    const fetchPopulationData = async () => {
       try {
-        const fetchedData = await fetchPopulationData(
-          onlyInSelectedPrefsState as number,
-        );
-        setData([fetchedData]);
+        if (!onlyInSelectedPrefsState) return;
+        const fetchedData = await fetchData(URL);
+        const result = [
+          {
+            prefCode: onlyInSelectedPrefsState,
+            prefPopulationData: fetchedData.result.data,
+          },
+        ];
+        setData(result);
       } catch (err) {
         setError(err);
       } finally {
@@ -28,7 +36,7 @@ export const useGetPopulationData = (
       }
     };
 
-    fetchData();
+    fetchPopulationData();
   }, [onlyInSelectedPrefsState]);
 
   return { data, loading, error };
