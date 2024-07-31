@@ -8,7 +8,11 @@ type Props = {
 
 export const PopulationCategorySelect = ({ onChange }: Props) => (
   <div>
-    <select onChange={(e) => onChange(e.target.value as PopulationCategoryId)}>
+    <label htmlFor='populationCategory'>区分選択</label>
+    <select
+      id='populationCategory'
+      onChange={(e) => onChange(e.target.value as PopulationCategoryId)}
+    >
       {POPULATION_CATEGORY_OPTIONS.map((option) => (
         <option key={option.id} value={option.id}>
           {option.label}

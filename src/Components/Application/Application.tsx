@@ -5,6 +5,7 @@ import { PopulationChartContainer } from '@/Components/PopulationChartContainer/
 export const Application = () => {
   return (
     <div>
+      <h1>人口推移グラフ</h1>
       <PrefecturesCheckboxList />
       <PopulationChartContainer />
     </div>
