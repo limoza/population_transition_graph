@@ -17,6 +17,8 @@
     "@swc/core": "^1.7.2",
     "@wyw-in-js/babel-preset": "^0.5.4",
     "@wyw-in-js/transform": "^0.5.4",
+    "highcharts": "^11.4.6",
+    "highcharts-react-official": "^3.2.1",
     "next": "14.2.5",
     "next-with-linaria": "^0.7.0",
     "react": "^18",
