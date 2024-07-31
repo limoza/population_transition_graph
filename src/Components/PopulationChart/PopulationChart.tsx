@@ -6,42 +6,36 @@ import { useGetSelectedPrefs } from '@/lib/hooks/useGetSelectedPrefs';
 import { findDifferences } from '@/lib/helper/findDifferences';
 import { createHighchartsData } from '@/lib/helper/createHighchartsData';
 import { createHighchartsOptions } from '@/lib/helper/createHighchartsOptions';
-import type {
-  PopulationCategoryId,
-  PopulationData,
-  HighchartsSeriesData,
-} from '@/types';
+import type { PopulationData, HighchartsSeriesData } from '@/types';
 
 type Props = {
-  populationCategory: {
-    categoryId: PopulationCategoryId;
-    index: number;
-  };
+  populationCategoryIndex: number;
 };
 
-export const PopulationChart = ({ populationCategory }: Props) => {
+export const PopulationChart = ({ populationCategoryIndex }: Props) => {
   const { selectedPrefsState } = useGetSelectedPrefs();
   const [populationData, setPopulationData] = useState<PopulationData[]>([]);
   const [highchartsSeriesData, setHighchartsSeriesData] = useState<
     HighchartsSeriesData[]
   >([]);
+
   const { onlyInSelectedPrefsState, onlyInPopulationData } = findDifferences(
     selectedPrefsState.selectedPrefs,
     populationData,
   );
+
   const { data, loading, error } = useGetPopulationData(
     onlyInSelectedPrefsState,
   );
 
-  useEffect(() => {
-    if (!onlyInPopulationData) return;
+  if (onlyInPopulationData) {
     setPopulationData((prev) => {
       const filteredUnselectedPrefs = prev.filter(
         (b: { prefCode: number }) => b.prefCode !== onlyInPopulationData,
       );
       return filteredUnselectedPrefs;
     });
-  }, [onlyInPopulationData]);
+  }
 
   useEffect(() => {
     if (data && data[0].prefPopulationData) {
@@ -52,10 +46,10 @@ export const PopulationChart = ({ populationCategory }: Props) => {
   useEffect(() => {
     const highchartsData = createHighchartsData(
       populationData,
-      populationCategory.index,
+      populationCategoryIndex,
     );
     setHighchartsSeriesData(highchartsData);
-  }, [populationCategory.index, populationData]);
+  }, [populationCategoryIndex, populationData]);
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;

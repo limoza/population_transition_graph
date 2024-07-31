@@ -58,6 +58,11 @@ export type PopulationCategory = {
 
 export type PopulationCategories = PopulationCategory[];
 
+export type SelectedPopulationCategory = {
+  categoryId: PopulationCategoryId;
+  index: number;
+};
+
 export type HighchartsSeriesData = {
   name: string;
   type: string;
