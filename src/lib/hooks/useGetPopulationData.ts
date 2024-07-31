@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { fetchData } from '@/lib/helper/fetchData';
+import { useGetSelectedPrefs } from '@/lib/hooks/useGetSelectedPrefs';
 import type { PopulationData } from '@/types';
 
 type Result = {
@@ -11,6 +12,7 @@ type Result = {
 export const useGetPopulationData = (
   onlyInSelectedPrefsState: number | undefined,
 ): Result => {
+  const { selectedPrefsState } = useGetSelectedPrefs();
   const [data, setData] = useState<PopulationData[] | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
@@ -22,22 +24,27 @@ export const useGetPopulationData = (
       try {
         if (!onlyInSelectedPrefsState) return;
         const fetchedData = await fetchData(URL);
+        const prefName =
+          selectedPrefsState.selectedPrefs.find(
+            (pref) => pref.prefCode === onlyInSelectedPrefsState,
+          )?.prefName || '';
         const result = [
           {
             prefCode: onlyInSelectedPrefsState,
+            prefName: prefName,
             prefPopulationData: fetchedData.result.data,
           },
         ];
         setData(result);
       } catch (err) {
-        setError(err);
+        setError(err as Error);
       } finally {
         setLoading(false);
       }
     };
 
     fetchPopulationData();
-  }, [onlyInSelectedPrefsState]);
+  }, [onlyInSelectedPrefsState, selectedPrefsState.selectedPrefs]);
 
   return { data, loading, error };
 };

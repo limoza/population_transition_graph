@@ -7,11 +7,15 @@ import {
 import { PopulationCategorySelect } from '@/Components/PopulationCategorySelect/PopulationCategorySelect';
 import type { PopulationCategoryId } from '@/types';
 
+const initialPopulationCategory = {
+  categoryId: POPULATION_CATEGORY_OPTIONS[0].id,
+  index: 0,
+};
+
 export const PopulationChartContainer = () => {
-  const [populationCategory, setPopulationCategory] = useState<{
-    categoryId: PopulationCategoryId;
-    index: number;
-  }>({ categoryId: POPULATION_CATEGORY_OPTIONS[0].id, index: 0 });
+  const [populationCategory, setPopulationCategory] = useState(
+    initialPopulationCategory,
+  );
 
   const handlePopulationCategoryChange = (categoryId: PopulationCategoryId) =>
     setPopulationCategory({
@@ -23,7 +27,7 @@ export const PopulationChartContainer = () => {
     <div>
       <h2>Population Chart</h2>
       <PopulationCategorySelect onChange={handlePopulationCategoryChange} />
-      <PopulationChart populationCategory={populationCategory} />
+      <PopulationChart populationCategoryIndex={populationCategory.index} />
     </div>
   );
 };

@@ -35,6 +35,7 @@ export type PrefPopulationData = {
 
 export type PopulationData = {
   prefCode: number;
+  prefName: string;
   prefPopulationData: PrefPopulationData[];
 };
 
@@ -56,3 +57,14 @@ export type PopulationCategory = {
 };
 
 export type PopulationCategories = PopulationCategory[];
+
+export type SelectedPopulationCategory = {
+  categoryId: PopulationCategoryId;
+  index: number;
+};
+
+export type HighchartsSeriesData = {
+  name: string;
+  type: string;
+  data: [number, number][];
+};
