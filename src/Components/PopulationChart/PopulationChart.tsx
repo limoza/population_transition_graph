@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react';
+import * as Highcharts from 'highcharts';
+import HighchartsReact from 'highcharts-react-official';
 import { useGetPopulationData } from '@/lib/hooks/useGetPopulationData';
 import { useGetSelectedPrefs } from '@/lib/hooks/useGetSelectedPrefs';
 import { findDifferences } from '@/lib/helper/findDifferences';
+import { createHighchartsData } from '@/lib/helper/createHighchartsData';
+import { createHighchartsOptions } from '@/lib/helper/createHighchartsOptions';
 import type {
   PopulationCategoryId,
   PopulationData,
-  PrefPopulationData,
+  HighchartsSeriesData,
 } from '@/types';
 
 type Props = {
@@ -18,9 +22,9 @@ type Props = {
 export const PopulationChart = ({ populationCategory }: Props) => {
   const { selectedPrefsState } = useGetSelectedPrefs();
   const [populationData, setPopulationData] = useState<PopulationData[]>([]);
-  const [filteredPopulationData, setFilteredPopulationData] = useState<
-    { [x: number]: PrefPopulationData }[] | null
-  >(null);
+  const [highchartsSeriesData, setHighchartsSeriesData] = useState<
+    HighchartsSeriesData[]
+  >([]);
   const { onlyInSelectedPrefsState, onlyInPopulationData } = findDifferences(
     selectedPrefsState.selectedPrefs,
     populationData,
@@ -46,14 +50,22 @@ export const PopulationChart = ({ populationCategory }: Props) => {
   }, [data]);
 
   useEffect(() => {
-    const result = populationData.map((data) => ({
-      [data.prefCode]: data.prefPopulationData[populationCategory.index],
-    }));
-    setFilteredPopulationData(result);
+    const highchartsData = createHighchartsData(
+      populationData,
+      populationCategory.index,
+    );
+    setHighchartsSeriesData(highchartsData);
   }, [populationCategory.index, populationData]);
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
 
-  return <div>WIP</div>;
+  return (
+    <div>
+      <HighchartsReact
+        highcharts={Highcharts}
+        options={createHighchartsOptions(highchartsSeriesData)}
+      />
+    </div>
+  );
 };
