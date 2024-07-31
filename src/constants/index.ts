@@ -1,4 +1,4 @@
-import { PopulationCategories } from '@/types';
+import type { PopulationCategories } from '@/types';
 
 export const TOTAL_POPULATION_ID = 'totalPopulation';
 export const YOUNG_POPULATION_ID = 'youngPopulation';

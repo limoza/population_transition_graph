@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { fetchData } from '@/lib/helper/fetchData';
-import type { PopulationData } from '@/types';
 import { useGetSelectedPrefs } from '@/lib/hooks/useGetSelectedPrefs';
+import type { PopulationData } from '@/types';
 
 type Result = {
   data: PopulationData[] | null;
