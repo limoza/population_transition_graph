@@ -5,7 +5,7 @@ export const createHighchartsOptions = (
 ) => {
   return {
     title: {
-      text: '都道府県別 総人口推移グラフ',
+      text: '',
       align: 'left',
     },
     yAxis: {
