@@ -6,6 +6,8 @@ import {
 } from '@/constants';
 import { PopulationCategorySelect } from '@/Components/PopulationCategorySelect/PopulationCategorySelect';
 import type { PopulationCategoryId } from '@/types';
+import { css } from '@linaria/core';
+import { spacing } from '@/styles/variables';
 
 const initialPopulationCategory = {
   categoryId: POPULATION_CATEGORY_OPTIONS[0].id,
@@ -24,10 +26,13 @@ export const PopulationChartContainer = () => {
     });
 
   return (
-    <div>
-      <h2>Population Chart</h2>
+    <section className={chartWrap}>
       <PopulationCategorySelect onChange={handlePopulationCategoryChange} />
       <PopulationChart populationCategoryIndex={populationCategory.index} />
-    </div>
+    </section>
   );
 };
+
+const chartWrap = css`
+  margin-top: ${spacing[4]};
+`;
