@@ -1,7 +1,7 @@
 export const fetchData = async (fetchURL: string) => {
   const response = await fetch(fetchURL, {
     headers: {
-      'X-API-KEY': `${process.env.NEXT_PUBLIC_REASAS_API_KEY}`,
+      'X-API-KEY': `${process.env.NEXT_PUBLIC_RESAS_API_KEY}`,
     },
   });
   if (!response.ok) {
