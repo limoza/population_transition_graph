@@ -6,7 +6,7 @@ describe('createHighchartsOptions', () => {
   it('正しいoptionが返される', () => {
     const expected = {
       title: {
-        text: '都道府県別 総人口推移グラフ',
+        text: '',
         align: 'left',
       },
       yAxis: {
