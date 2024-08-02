@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { NoteBox } from '@/Components/NoteBox/NoteBox';
+import { Loading } from '@/Components/Loading/Loading';
+import { Error } from '@/Components/Error/Error';
 import * as Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 import { useGetPopulationData } from '@/lib/hooks/useGetPopulationData';
@@ -7,6 +10,8 @@ import { findDifferences } from '@/lib/helper/findDifferences';
 import { createHighchartsData } from '@/lib/helper/createHighchartsData';
 import { createHighchartsOptions } from '@/lib/helper/createHighchartsOptions';
 import type { PopulationData, HighchartsSeriesData } from '@/types';
+import { css } from '@linaria/core';
+import { spacing } from '@/styles/variables';
 
 type Props = {
   populationCategoryIndex: number;
@@ -51,11 +56,13 @@ export const PopulationChart = ({ populationCategoryIndex }: Props) => {
     setHighchartsSeriesData(highchartsData);
   }, [populationCategoryIndex, populationData]);
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error.message}</div>;
+  if (populationData.length === 0)
+    return <NoteBox>都道府県を選択してください</NoteBox>;
+  if (loading) return <Loading />;
+  if (error) return <Error>{error.message}</Error>;
 
   return (
-    <div>
+    <div className={chartWrap}>
       <HighchartsReact
         highcharts={Highcharts}
         options={createHighchartsOptions(highchartsSeriesData)}
@@ -63,3 +70,7 @@ export const PopulationChart = ({ populationCategoryIndex }: Props) => {
     </div>
   );
 };
+
+const chartWrap = css`
+  margin-top: ${spacing[4]};
+`;
