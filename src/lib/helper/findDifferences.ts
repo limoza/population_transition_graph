@@ -14,18 +14,20 @@ export const findDifferences = (
 
   const isInitialLoad = isSelectedPrefsStateEmpty && isPopulationDataEmpty;
   if (isInitialLoad) {
-    return {
+    const result = {
       onlyInSelectedPrefsState: undefined,
       onlyInPopulationData: undefined,
     };
+    return result;
   }
 
   const isPrefUnchecked = isSelectedPrefsStateEmpty && !isPopulationDataEmpty;
   if (isPrefUnchecked) {
-    return {
+    const result = {
       onlyInSelectedPrefsState: undefined,
       onlyInPopulationData: populationData[0].prefCode,
     };
+    return result;
   }
 
   const onlyInSelectedPrefsState = selectedPrefsState.find(
@@ -36,8 +38,9 @@ export const findDifferences = (
     (b) => !selectedPrefsState.some((a) => a.prefCode === b.prefCode),
   )?.prefCode;
 
-  return {
+  const result = {
     onlyInSelectedPrefsState,
     onlyInPopulationData,
   };
+  return result;
 };
