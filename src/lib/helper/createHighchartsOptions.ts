@@ -3,7 +3,7 @@ import type { HighchartsSeriesData } from '@/types';
 export const createHighchartsOptions = (
   highchartsSeriesData: HighchartsSeriesData[],
 ) => {
-  return {
+  const result = {
     title: {
       text: '',
       align: 'left',
@@ -56,4 +56,5 @@ export const createHighchartsOptions = (
       enabled: false,
     },
   };
+  return result;
 };
