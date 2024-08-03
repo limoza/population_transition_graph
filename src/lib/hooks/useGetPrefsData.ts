@@ -13,8 +13,8 @@ export const useGetPrefsData = () => {
       try {
         const result = await fetchData(URL);
         setData(result.result);
-      } catch (err) {
-        setError(err as Error);
+      } catch (error) {
+        setError(error as Error);
       } finally {
         setLoading(false);
       }

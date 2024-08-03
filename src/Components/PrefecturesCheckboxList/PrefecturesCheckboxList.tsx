@@ -16,18 +16,15 @@ export const PrefecturesCheckboxList = () => {
   }, [data]);
 
   if (error) return <Error>{error.message}</Error>;
+  if (loading) return <Loading />;
 
   return (
     <section className={listWrap}>
-      {loading ? (
-        <Loading />
-      ) : (
-        <ul className={list}>
-          {prefsData.map((prefData) => (
-            <PrefecturesCheckbox key={prefData.prefCode} prefData={prefData} />
-          ))}
-        </ul>
-      )}
+      <ul className={list}>
+        {prefsData.map((prefData) => (
+          <PrefecturesCheckbox key={prefData.prefCode} prefData={prefData} />
+        ))}
+      </ul>
     </section>
   );
 };

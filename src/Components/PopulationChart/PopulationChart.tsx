@@ -56,10 +56,10 @@ export const PopulationChart = ({ populationCategoryIndex }: Props) => {
     setHighchartsSeriesData(highchartsData);
   }, [populationCategoryIndex, populationData]);
 
+  if (error) return <Error>{error.message}</Error>;
   if (populationData.length === 0)
     return <NoteBox>都道府県を選択してください</NoteBox>;
   if (loading) return <Loading />;
-  if (error) return <Error>{error.message}</Error>;
 
   return (
     <div className={chartWrap}>
