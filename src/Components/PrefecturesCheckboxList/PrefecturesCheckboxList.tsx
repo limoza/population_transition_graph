@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Loading } from '@/Components/Loading/Loading';
-import { Error } from '@/Components/Error/Error';
+import { LoadingBox } from '@/Components/LoadingBox/LoadingBox';
+import { ErrorBox } from '@/Components/ErrorBox/ErrorBox';
 import { useGetPrefsData } from '@/lib/hooks/useGetPrefsData';
 import { PrefecturesCheckbox } from '@/Components/PrefecturesCheckbox/PrefecturesCheckbox';
 import type { Prefectures } from '@/types';
@@ -15,19 +15,16 @@ export const PrefecturesCheckboxList = () => {
     if (data) setPrefsData(data);
   }, [data]);
 
-  if (error) return <Error>{error.message}</Error>;
+  if (error) return <ErrorBox>{error.message}</ErrorBox>;
+  if (loading) return <LoadingBox />;
 
   return (
     <section className={listWrap}>
-      {loading ? (
-        <Loading />
-      ) : (
-        <ul className={list}>
-          {prefsData.map((prefData) => (
-            <PrefecturesCheckbox key={prefData.prefCode} prefData={prefData} />
-          ))}
-        </ul>
-      )}
+      <ul className={list}>
+        {prefsData.map((prefData) => (
+          <PrefecturesCheckbox key={prefData.prefCode} prefData={prefData} />
+        ))}
+      </ul>
     </section>
   );
 };

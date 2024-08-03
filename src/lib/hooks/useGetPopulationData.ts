@@ -36,8 +36,8 @@ export const useGetPopulationData = (
           },
         ];
         setData(result);
-      } catch (err) {
-        setError(err as Error);
+      } catch (error) {
+        setError(error as Error);
       } finally {
         setLoading(false);
       }

@@ -13,6 +13,6 @@ export const NoteBox = ({ children }: Props) => (
 export const noteBoxStyle = css`
   margin-top: ${spacing[4]};
   text-align: center;
-  padding: ${spacing[20]};
+  padding: ${spacing[20]} ${spacing[4]};
   background-color: ${colors.gray[100]};
 `;
