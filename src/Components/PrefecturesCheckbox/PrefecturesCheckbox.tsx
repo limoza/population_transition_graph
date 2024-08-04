@@ -12,29 +12,23 @@ type Props = {
 
 export const PrefecturesCheckbox = ({ prefData }: Props) => {
   const { selectedPrefsState, selectedPrefsDispatch } = useGetSelectedPrefs();
-  const { prefCode, prefName } = prefData;
   const isSelected = isPrefSelected(prefData, selectedPrefsState);
+
+  const handleChange = () => {
+    handlePrefSelect(prefData, selectedPrefsState, selectedPrefsDispatch);
+  };
 
   return (
     <li>
       <label className={isSelected ? selectedLabel : label}>
         <input
           type='checkbox'
-          name={prefName}
+          name={prefData.prefName}
           className={hiddenCheckbox}
           checked={isSelected}
-          onChange={() =>
-            handlePrefSelect(
-              {
-                prefCode: prefCode,
-                prefName: prefName,
-              },
-              selectedPrefsState,
-              selectedPrefsDispatch,
-            )
-          }
+          onChange={handleChange}
         />
-        {prefName}
+        {prefData.prefName}
       </label>
     </li>
   );
