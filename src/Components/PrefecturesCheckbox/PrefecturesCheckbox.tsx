@@ -55,6 +55,7 @@ const labelBase = {
   backgroundColor: colors.gray[100],
   borderRadius: spacing[1],
   textAlign: 'center',
+  transition: 'background-color 0.2s, color 0.2s',
 };
 
 const label = css`
