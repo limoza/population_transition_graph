@@ -7,10 +7,10 @@ type Props = {
 };
 
 export const ErrorBox = ({ children }: Props) => (
-  <div className={errorStyle}>{children}</div>
+  <div className={errorBox}>{children}</div>
 );
 
-const errorStyle = css`
+const errorBox = css`
   margin-top: ${spacing[4]};
   text-align: center;
   padding: ${spacing[20]} ${spacing[4]};

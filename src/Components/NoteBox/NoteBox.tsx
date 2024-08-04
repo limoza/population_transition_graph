@@ -7,10 +7,10 @@ type Props = {
 };
 
 export const NoteBox = ({ children }: Props) => (
-  <div className={noteBoxStyle}>{children}</div>
+  <div className={noteBox}>{children}</div>
 );
 
-export const noteBoxStyle = css`
+export const noteBox = css`
   margin-top: ${spacing[4]};
   text-align: center;
   padding: ${spacing[20]} ${spacing[4]};

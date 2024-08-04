@@ -2,9 +2,9 @@ import React from 'react';
 import { css } from '@linaria/core';
 import { spacing, colors } from '@/styles/variables';
 
-export const LoadingBox = () => <div className={loading}>Loading...</div>;
+export const LoadingBox = () => <div className={loadingBox}>Loading...</div>;
 
-const loading = css`
+const loadingBox = css`
   margin-top: ${spacing[4]};
   text-align: center;
   padding: ${spacing[20]} ${spacing[4]};
