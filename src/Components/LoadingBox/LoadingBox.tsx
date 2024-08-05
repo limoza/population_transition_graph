@@ -4,7 +4,7 @@ import { spacing, colors } from '@/styles/variables';
 
 export const LoadingBox = () => (
   <div className={loadingBox}>
-    <span className={loader}></span>
+    <span className={loader} role='status'></span>
   </div>
 );
 
