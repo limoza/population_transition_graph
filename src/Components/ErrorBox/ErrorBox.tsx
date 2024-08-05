@@ -7,7 +7,9 @@ type Props = {
 };
 
 export const ErrorBox = ({ children }: Props) => (
-  <div className={errorBox}>{children}</div>
+  <div className={errorBox} role='alert'>
+    {children}
+  </div>
 );
 
 const errorBox = css`
