@@ -8,10 +8,17 @@ export const LoadingBox = () => (
   </div>
 );
 
+const loadingBoxPadding = {
+  padding: `6.5rem ${spacing[4]}`,
+  '@media (max-width: 430px)': {
+    padding: `15.5rem ${spacing[4]}`,
+  },
+};
+
 const loadingBox = css`
+  ${loadingBoxPadding};
   margin-top: ${spacing[4]};
   text-align: center;
-  padding: 15.5rem ${spacing[4]};
   background-color: ${colors.gray[100]};
 `;
 
