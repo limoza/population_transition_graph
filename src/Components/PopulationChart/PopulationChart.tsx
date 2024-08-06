@@ -62,7 +62,7 @@ export const PopulationChart = ({ populationCategoryIndex }: Props) => {
   if (loading) return <LoadingBox />;
 
   return (
-    <div className={chartWrap}>
+    <div className={chartContainer}>
       <HighchartsReact
         highcharts={Highcharts}
         options={createHighchartsOptions(highchartsSeriesData)}
@@ -71,6 +71,6 @@ export const PopulationChart = ({ populationCategoryIndex }: Props) => {
   );
 };
 
-const chartWrap = css`
+const chartContainer = css`
   margin-top: ${spacing[4]};
 `;

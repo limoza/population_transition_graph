@@ -19,7 +19,7 @@ export const PrefecturesCheckboxList = () => {
   if (loading) return <LoadingBox />;
 
   return (
-    <section className={listWrap}>
+    <section className={listContainer}>
       <ul className={list}>
         {prefsData.map((prefData) => (
           <PrefecturesCheckbox key={prefData.prefCode} prefData={prefData} />
@@ -29,7 +29,7 @@ export const PrefecturesCheckboxList = () => {
   );
 };
 
-const listWrap = css`
+const listContainer = css`
   margin-top: ${spacing[4]};
 `;
 
