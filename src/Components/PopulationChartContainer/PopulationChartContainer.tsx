@@ -26,13 +26,13 @@ export const PopulationChartContainer = () => {
     });
 
   return (
-    <section className={chartWrap}>
+    <section className={chartContainer}>
       <PopulationCategorySelect onChange={handlePopulationCategoryChange} />
       <PopulationChart populationCategoryIndex={populationCategory.index} />
     </section>
   );
 };
 
-const chartWrap = css`
+const chartContainer = css`
   margin-top: ${spacing[4]};
 `;

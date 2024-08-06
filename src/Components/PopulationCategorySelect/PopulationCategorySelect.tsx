@@ -9,7 +9,7 @@ type Props = {
 };
 
 export const PopulationCategorySelect = ({ onChange }: Props) => (
-  <div className={selectBoxWrap}>
+  <div className={selectBoxContainer}>
     <label htmlFor='populationCategory'>区分選択: </label>
     <select
       id='populationCategory'
@@ -25,7 +25,7 @@ export const PopulationCategorySelect = ({ onChange }: Props) => (
   </div>
 );
 
-const selectBoxWrap = css`
+const selectBoxContainer = css`
   display: flex;
   justify-content: flex-end;
   align-items: center;

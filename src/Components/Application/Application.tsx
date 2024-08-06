@@ -17,8 +17,7 @@ const base = css`
   max-width: 820px;
   margin-right: auto;
   margin-left: auto;
-  padding-left: ${spacing[4]};
-  padding-right: ${spacing[4]};
+  padding: ${spacing[4]};
   font-size: ${fontSize.base.fontSize};
   line-height: ${fontSize.base.lineHeight};
   color: ${colors.gray[900]};

@@ -48,8 +48,7 @@ const hiddenCheckbox = css`
 `;
 
 const labelBase = {
-  width: '4rem',
-  display: 'inline-block',
+  display: 'block',
   cursor: 'pointer',
   padding: spacing[2],
   backgroundColor: colors.gray[100],
