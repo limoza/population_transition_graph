@@ -19,7 +19,7 @@ export const PrefecturesCheckboxList = () => {
   if (loading) return <LoadingBox />;
 
   return (
-    <section className={listContainer}>
+    <section>
       <ul className={list}>
         {prefsData.map((prefData) => (
           <PrefecturesCheckbox key={prefData.prefCode} prefData={prefData} />
@@ -28,10 +28,6 @@ export const PrefecturesCheckboxList = () => {
     </section>
   );
 };
-
-const listContainer = css`
-  margin-top: ${spacing[4]};
-`;
 
 const listWidth = {
   gridTemplateColumns: `repeat(
@@ -56,6 +52,7 @@ const listWidth = {
 
 const list = css`
   ${listWidth};
+  margin-top: 0;
   margin-bottom: ${spacing[0]};
   padding: ${spacing[0]};
   list-style: none;
